@@ -1,15 +1,28 @@
 [{
   "name":"user1",
   "email":"user1@gmail.com",
-  "password":"user1password"
+  "password":"user1password",
+  "role":"administrator"
 },
 {
   "name":"user2",
   "email":"user2@gmail.com",
-  "password":"user2password"
+  "password":"user2password",
+  "role":"administrator"
+
 },
 {
   "name":"user3",
   "email":"user3@gmail.com",
-  "password":"user3password"
-}]
+  "password":"user3password",
+  "role":"administrator"
+
+},
+{
+  "name":"first",
+  "email":"a@gmail.com",
+  "password":"a",
+  "role":"administrator"
+
+}
+]
