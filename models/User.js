@@ -18,6 +18,24 @@ min:6
         max:1024,
         min:6
     },
+    role:{
+        type: String,
+        default:'defaultRole'
+
+    },
+    creatorId:{
+type: String,
+default:null
+
+    },
+    creatorEmail:{
+        type: String,
+default:null
+    },
+    usersCreated:{
+        default:null,
+        type:Array
+    },
     date:{
         type: Date,
         default: Date.now

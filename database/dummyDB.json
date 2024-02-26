@@ -1,28 +1,44 @@
-[{
-  "name":"user1",
-  "email":"user1@gmail.com",
-  "password":"user1password",
-  "role":"administrator"
-},
-{
-  "name":"user2",
-  "email":"user2@gmail.com",
-  "password":"user2password",
-  "role":"administrator"
-
-},
-{
-  "name":"user3",
-  "email":"user3@gmail.com",
-  "password":"user3password",
-  "role":"administrator"
-
-},
-{
-  "name":"first",
-  "email":"a@gmail.com",
-  "password":"a",
-  "role":"administrator"
-
-}
+[
+  {
+    "name": "admin",
+    "email": "admin@gmail.com",
+    "password": "password",
+    "role": "administrator",
+    "usersCreated": [
+      "test2@gmail.com"
+    ]
+  },
+  {
+    "name": "testRL",
+    "email": "testRL@gmail.com",
+    "password": "$2a$10$JNp7/wBHOf8mfGfzZXuCu.flGtARq7R9IScIKdimMtYaHK9A9jZD6",
+    "role": "defaultRole",
+    "creatorId": null,
+    "creatorEmail": null,
+    "usersCreated": [],
+    "_id": "65dc01c819a45f02f2ebfda6",
+    "date": "2024-02-26T03:13:12.156Z"
+  },
+  {
+    "name": "testRL",
+    "email": "testRL@gmail.com",
+    "password": "$2a$10$JSafyRHcjffcXWvgqeqHDOt/8IcguG54QPynSdW6IKrlYJxcE12Uu",
+    "role": "defaultRole",
+    "creatorId": null,
+    "creatorEmail": null,
+    "usersCreated": [],
+    "_id": "65dc01c819a45f02f2ebfda7",
+    "date": "2024-02-26T03:13:12.268Z"
+  },
+  {
+    "name": "testRL1",
+    "email": "testRL1@gmail.com",
+    "password": "$2a$10$J8euS8w15D/V7/QnKVpZ0uOPk68Wag8FqI0KihrowFgSDEflddasu",
+    "role": "defaultRole",
+    "creatorId": null,
+    "creatorEmail": null,
+    "usersCreated": [],
+    "_id": "65dc025f4dc330aec5c3af3e",
+    "date": "2024-02-26T03:15:43.173Z"
+  }
 ]

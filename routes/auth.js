@@ -1,70 +1,11 @@
+const { register, login } = require("../controllers/auth");
+
 const router = require("express").Router();
-const User = require('../models/User');
-const bcrypt=require('bcryptjs');
-const dummyDb=require('../database/dummyDB.json');
 
-const stringdb=JSON.stringify(dummyDb);
-
-router.post('/register',async(req,res)=>{
-
-  const email = req.body.email;
-  console.log(email);
-  //check if user alreadty exists
-  try{
-for(var i=0;i<dummyDb.length;i++){
-if (email==dummyDb[i].email) return res.status(400).send("User already registered");
-}
-  }
-  catch(err){
-    console.log(err);
-    return res.status(500).send('Internal Server Error');
-  }
-
-
-//Hash The password
- const salt = await bcrypt.genSalt(10);
-const hashPassword = await bcrypt.hash(req.body.password, salt);
-
-//create new user
-    const user = new User({
-     name: req.body.name,
-     email: req.body.email,
-     password: hashPassword
- });
-console.log('['+JSON.stringify(user)+stringdb);
-// console.log(JSON.parse(stringdb))
- try {
-     res.sendStatus(user);
- }
- catch (err) {
-res.status(404).send(err);
- }
-})
+router.post('/register',register);
 
 //LOGIN
-router.post('/login',async (req,res) => {
-//checking if the user already exists
-let emailExist = true;
-var i=0
-
-const email=req.body.email;
-for(i;i<dummyDb.length;i++){
-if(email!=dummyDb[i].email){
-    emailExist = false; 
-}else{emailExist=true;
-break;}
-}
-if(!emailExist) return res.status(400).send("Email Doesn't Exist!");
-
-//Checking the password
-
-const password=req.body.password;
-  if(password!=dummyDb[i].password) 
- return res.status(400).send("Wrong Password!");
-else {
-  delete dummyDb[i].password;
-  res.status(200).send(dummyDb[i]) }
-})
+router.post('/login', login);
 
 
 

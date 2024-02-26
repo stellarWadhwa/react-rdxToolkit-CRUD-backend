@@ -12,12 +12,15 @@ app.use(express.json())
 
 
 const authRoute = require('./routes/auth')
+const adminRoutes = require('./routes/adminControls')
 
 app.use(cors({
   origin:"*",
 }))
 
 app.use('/api/users',authRoute);
+app.use('/api/admin',adminRoutes);
+
 
 app.get('/',(req,res)=>{
 res.send("koko")
