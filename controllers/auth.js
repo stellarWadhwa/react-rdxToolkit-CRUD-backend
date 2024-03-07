@@ -2,6 +2,7 @@ const User = require('../models/User');
 const bcrypt=require('bcryptjs');
 const dummyDb=require('../database/dummyDB.json');
 const fs = require('fs');
+const jwt =require('jsonwebtoken')
 const path = require('path');
 const jsonFilePath = path.join(__dirname, '..', 'database', 'dummyDB.json');
 
@@ -63,8 +64,11 @@ const register = async (req, res) => {
         if (validPass) {
           // Password is correct, so remove password field and send user data
           const userData = { ...dummyDb[i] };
+     
           delete userData.password;
-          return res.status(200).send(userData);
+          const token = jwt.sign({ user: userData}, process.env.JWT_SECRET,{ expiresIn: '6h' });
+          
+          return res.status(200).send({token});
         } else {
           // Password is incorrect
           return res.status(400).send("Wrong Password!");
