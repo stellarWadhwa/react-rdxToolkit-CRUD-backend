@@ -2,43 +2,65 @@
   {
     "name": "admin",
     "email": "admin@gmail.com",
-    "password": "password",
+    "password": "$2y$10$2XExI3qLYLak1Js6Ma0dqOH/3zfVw2YnfEoKXrmOSw5cJfY5FqPd6",
     "role": "administrator",
+    "_id": "7493742374424032",
     "usersCreated": [
-      "test2@gmail.com"
+      "jojo1@gmail.com",
+      "jojo@gmail.com",
+      "kojo@gmail.com",
+      "dodo@gmail.com"
     ]
   },
   {
-    "name": "testRL",
-    "email": "testRL@gmail.com",
-    "password": "$2a$10$JNp7/wBHOf8mfGfzZXuCu.flGtARq7R9IScIKdimMtYaHK9A9jZD6",
-    "role": "defaultRole",
+    "name": "kojo",
+    "email": "kojo@gmail.com",
+    "password": "$2a$10$bj1oCwFs0zAkymHCu3xG7ei9GlTOO6i.bKf9uzFTnHzdkhtLs5jrq",
+    "role": "administrator",
     "creatorId": null,
-    "creatorEmail": null,
-    "usersCreated": [],
-    "_id": "65dc01c819a45f02f2ebfda6",
-    "date": "2024-02-26T03:13:12.156Z"
+    "creatorEmail": "admin@gmail.com",
+    "usersCreated": [
+      "kojou1@gmail.com",
+      "kojou2@gmail.com",
+      "kojou3@gmail.com",
+      "kojou4@gmail.com",
+      "kojou5@gmail.com",
+      "kojou6@gmail.com",
+      "kojou7@gmail.com",
+      "kojou8@gmail.com",
+      "kojou9@gmail.com",
+      "kojou10@gmail.com",
+      "kojou11@gmail.com",
+      "kojou12@gmail.com",
+      "kojou13@gmail.com",
+      "kojou14@gmail.com",
+      "kojou15@gmail.com",
+      "kojou16@gmail.com",
+      "kojou17@gmail.com",
+      "kojou18@gmail.com",
+      "kojou19@gmail.com",
+      "kojou20@gmail.com"
+    ],
+    "date": "2024-03-26T05:49:59.771Z"
   },
   {
-    "name": "testRL",
-    "email": "testRL@gmail.com",
-    "password": "$2a$10$JSafyRHcjffcXWvgqeqHDOt/8IcguG54QPynSdW6IKrlYJxcE12Uu",
-    "role": "defaultRole",
+    "name": "kojou19",
+    "email": "kojou19@gmail.com",
+    "password": "$2a$10$ju.yFEfq/o1k5ylSnBq98OfRrPciDqu1v4QbEFBFeZqIzdijLt3/.",
+    "role": "intern",
     "creatorId": null,
-    "creatorEmail": null,
+    "creatorEmail": "kojo@gmail.com",
     "usersCreated": [],
-    "_id": "65dc01c819a45f02f2ebfda7",
-    "date": "2024-02-26T03:13:12.268Z"
+    "date": "2024-03-26T09:11:03.215Z"
   },
   {
-    "name": "testRL1",
-    "email": "testRL1@gmail.com",
-    "password": "$2a$10$J8euS8w15D/V7/QnKVpZ0uOPk68Wag8FqI0KihrowFgSDEflddasu",
-    "role": "defaultRole",
+    "name": "kojou20",
+    "email": "kojou20@gmail.com",
+    "password": "$2a$10$X5QojZv3ZrQNdpHjUU8AN.P31m6WdgpxkXItDfTgJLUrNWRPFlioK",
+    "role": "intern",
     "creatorId": null,
-    "creatorEmail": null,
+    "creatorEmail": "kojo@gmail.com",
     "usersCreated": [],
-    "_id": "65dc025f4dc330aec5c3af3e",
-    "date": "2024-02-26T03:15:43.173Z"
+    "date": "2024-03-26T09:11:19.344Z"
   }
 ]
