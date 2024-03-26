@@ -64,9 +64,9 @@ try{
 for( let key in dummyDb){
 
 console.log(req.body.email)
-if(dummyDb[key].email===req.body.email){
+if(dummyDb[key].creatorEmail===req.body.email){
 
-  usersCreated.push(dummyDb[key].usersCreated);
+  usersCreated.push(dummyDb[key]);
 
 }} 
 }
@@ -106,21 +106,39 @@ const assignUserRoles = async(req,res)=>{
             });
   res.status(200).send("role updated")
   } 
-  
-const deleteUser = async(req, res) => {
-const updatedDummyDb=  dummyDb.filter(user=>user.email!=req.body.email);
-  console.log(updatedDummyDb);
+//i am gonna restart the server after every delete execution to save the file, somwhow it is not saving the normal way  
+const { exec } = require('child_process');
 
-            // Save the updated dummy DB back to the file
-            fs.writeFile(jsonFilePath, JSON.stringify(u, null, 2), (err) => {
-              if (err) {
-                console.error(err);
-                return res.status(500).send('Error saving user data.');
-              }
-            
-              res.status(201).send("User Deleted Succesfully.");
-});
-}
+const deleteUser = async (req, res) => {
+    try {
+        const updatedDummyDb = dummyDb.filter(user => user.email !== req.body.email);
+        console.log("Updated Dummy DB:", updatedDummyDb);
+
+        // Save the updated dummy DB back to the file synchronously
+        try {
+            fs.writeFileSync(jsonFilePath, JSON.stringify(updatedDummyDb, null, 2));
+            console.log("User Deleted Successfully.");
+            res.status(201).send("User Deleted Successfully.");
+
+            // Restart the server using a child process
+            exec(rs, (error, stdout, stderr) => {
+                if (error) {
+                    console.error("Error restarting server:", error);
+                    return;
+                }
+                console.log("Server restarted successfully:", stdout);
+            });
+        } catch (writeError) {
+            console.error("Error saving updatedDummyDb to file:", writeError);
+            res.status(500).send("Error saving user data.");
+        }
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        res.status(500).send("Error deleting user.");
+    }
+};
+
+
 
 const updateUserRole = async(req, res) => {
   for(let key in dummyDb){
