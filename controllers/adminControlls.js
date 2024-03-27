@@ -11,12 +11,12 @@ const addUser = async (req, res) => {
 
   console.log(jsonFilePath)
     try {
+      await userCreationValidation.validateAsync(req.body);
       // Check if user already exists
       const existingUser = dummyDb.find(user => user.email === email);
       if (existingUser) {
         return res.status(400).send("User already registered");
       }
-  
       // Hash the password
       const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(password, salt);
@@ -52,7 +52,7 @@ const addUser = async (req, res) => {
       res.status(201).send("User registered successfully.");
     } catch (err) {
       console.error(err);
-      res.status(500).send('Internal Server Error');
+      res.status(400).send(err.message);
     }
   }
 
@@ -108,6 +108,7 @@ const assignUserRoles = async(req,res)=>{
   } 
 //i am gonna restart the server after every delete execution to save the file, somwhow it is not saving the normal way  
 const { exec } = require('child_process');
+const { userRegisterValidation, userCreationValidation } = require('../utils/validation');
 
 const deleteUser = async (req, res) => {
     try {
