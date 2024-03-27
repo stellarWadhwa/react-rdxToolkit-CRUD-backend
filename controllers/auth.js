@@ -4,14 +4,18 @@ const dummyDb=require('../database/dummyDB.json');
 const fs = require('fs');
 const jwt =require('jsonwebtoken')
 const path = require('path');
+const { userRegisterValidation, userLoginValidation } = require('../utils/validation');
 const jsonFilePath = path.join(__dirname, '..', 'database', 'dummyDB.json');
 
 const register = async (req, res) => {
+
     const { name, email, password } = req.body;
     console.log(name);   
     console.log("kokok")
 
     try {
+      await userRegisterValidation.validateAsync(req.body);
+
       // Check if user already exists
       const existingUser = dummyDb.find(user => user.email === email);
       if (existingUser) {
@@ -46,7 +50,7 @@ const register = async (req, res) => {
       res.status(201).send("User registered successfully.");
     } catch (err) {
       console.error(err);
-      res.status(500).send('Internal Server Error');
+      res.status(400).send(err.message);
     }
   }
 
@@ -56,30 +60,40 @@ const register = async (req, res) => {
     let emailExist = false;
 
     const email = req.body.email;
-    for (let i = 0; i < dummyDb.length; i++) {
-      if (email === dummyDb[i].email) { 
-        emailExist = true;
-        //Checking the password
-        const validPass=await bcrypt.compare(req.body.password,dummyDb[i].password);
-        if (validPass) {
-          // Password is correct, so remove password field and send user data
-          const userData = { ...dummyDb[i] };
-     
-          delete userData.password;
-          const token = jwt.sign({ user: userData}, process.env.JWT_SECRET,{ expiresIn: '6h' });
-          
-          return res.status(200).send({token});
-        } else {
-          // Password is incorrect
-          return res.status(400).send("Wrong Password!");
+    try{
+      await userLoginValidation.validateAsync(req.body);
+      for (let i = 0; i < dummyDb.length; i++) {
+        console.log("found")
+        if (email === dummyDb[i].email) { 
+          emailExist = true;
+          //Checking the password
+          const validPass=await bcrypt.compare(req.body.password,dummyDb[i].password);
+          if (validPass) {
+            // Password is correct, so remove password field and send user data
+            const userData = { ...dummyDb[i] };
+       
+            delete userData.password;
+            const token = jwt.sign({ user: userData}, process.env.JWT_SECRET,{ expiresIn: '6h' });
+            
+            return res.status(200).send({token});
+          } else {
+            // Password is incorrect
+            return res.status(400).send("Wrong Password!");
+          }
         }
+        // Email not found
+    
+      }
+      if (!emailExist) {
+        return res.status(400).send("Email Doesn't Exist!");
       }
     }
-    
-    // Email not found
-    if (!emailExist) {
-      return res.status(400).send("Email Doesn't Exist!");
+    catch(err){
+      console.error(err);
+      res.status(400).send(err.message);
     }
+    
+    
   }
 
   module.exports = { register, login };
